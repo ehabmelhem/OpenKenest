@@ -2,7 +2,7 @@ const express = require("express");
 const bodyparser = require("body-parser");
 const usersRouter = require("./Routers/user");
 const app = express();
-app.use(express.static("ibraheemKittani_ehabMelhem/build"));
+app.use()
 
 app.use("/users", usersRouter);
 
