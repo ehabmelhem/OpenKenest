@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from "react";
 import "./Naom.css";
-function Naom() {
-  const [allInfo, setAll] = useState([]);
-  useEffect(() => {
+function getNaom() {
+  return new Promise((resolve, reject) => {
     fetch("/users/get-naom")
       .then((r) => r.json())
       .then((data) => {
-        setAll(data.info.split("}"));
+        resolve(data.info.split("}"));
       });
+  });
+}
+
+function Naom() {
+  const [allInfo, setAll] = useState([]);
+  useEffect(async () => {
+    // const all = await getNaom();
+    await getNaom().then((all) => setAll(all));
+    // setAll(all);
   }, []);
   return (
     <div className="naom">
